@@ -1,0 +1,641 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Strength Analyzer | ML-Based</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    //<!-- Google Font 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .container {
+            background: #ffffff;
+            color: #333;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #2c5364;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="password"]:focus {
+            border-color: #2c5364;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2c5364;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #203a43;
+        }
+
+        .result-box {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .weak {
+            background: #ffdddd;
+            color: #b30000;
+        }
+
+        .medium {
+            background: #fff4cc;
+            color: #a67c00;
+        }
+
+        .strong {
+            background: #ddffdd;
+            color: #006600;
+        }
+
+        .error {
+            margin-top: 15px;
+            padding: 10px;
+            background: #ffe0e0;
+            color: #b00000;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .footer span {
+            color: #2c5364;
+            font-weight: 600;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                margin: 15px;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Password Strength Analyzer</h1>
+        <p class="subtitle">
+            ML-Based Cybersecurity Project | No Rule-Based Logic
+        </p>
+
+        <form method="POST">
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                value="{{ password }}"
+                required
+            >
+            <button type="submit">Analyze Strength</button>
+        </form>
+
+        {% if result %}
+            <div class="result-box
+                {% if result == 'Weak' %}weak{% endif %}
+                {% if result == 'Medium' %}medium{% endif %}
+                {% if result == 'Strong' %}strong{% endif %}
+            ">
+                Password Strength: {{ result }}
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <div class="footer">
+            © 2025 | <span>Password Strength Analyzer</span><br>
+            Machine Learning Based Cybersecurity Application
+        </div>
+    </div>
+
+</body>
+</html> -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Strength Analyzer | ML-Based</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   // <!-- Google Font 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .container {
+            background: #ffffff;
+            color: #333;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #2c5364;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="password"]:focus {
+            border-color: #2c5364;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2c5364;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #203a43;
+        }
+
+        .result-box {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .weak {
+            background: #ffdddd;
+            color: #b30000;
+        }
+
+        .medium {
+            background: #fff4cc;
+            color: #a67c00;
+        }
+
+        .strong {
+            background: #ddffdd;
+            color: #006600;
+        }
+
+        .reason-box {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            background: #f0f0f0;
+            color: #333;
+            text-align: left;
+        }
+
+        .error {
+            margin-top: 15px;
+            padding: 10px;
+            background: #ffe0e0;
+            color: #b00000;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .footer span {
+            color: #2c5364;
+            font-weight: 600;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                margin: 15px;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Password Strength Analyzer</h1>
+        <p class="subtitle">
+            ML-Based Cybersecurity Project | No Rule-Based Logic
+        </p>
+
+        <form method="POST">
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                value="{{ password }}"
+                required
+            >
+            <button type="submit">Analyze Strength</button>
+        </form>
+
+        {% if result %}
+            <div class="result-box
+                {% if result == 'Weak' %}weak{% endif %}
+                {% if result == 'Medium' %}medium{% endif %}
+                {% if result == 'Strong' %}strong{% endif %}
+            ">
+                Password Strength: {{ result }}
+            </div>
+
+            {% if reason %}
+                <div class="reason-box">
+                    Reason: {{ reason }}
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <div class="footer">
+            © 2025 | <span>Password Strength Analyzer</span><br>
+            Machine Learning Based Cybersecurity Application
+        </div>
+    </div>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecurePass AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+
+<header class="top-bar">
+    <div class="logo">🔐 SecurePass AI</div>
+    <div class="status">
+        <span>⚡ Real-time Analysis</span>
+        <span>🔒 Local Processing</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <h1>How strong is your <span>security?</span></h1>
+    <p class="subtitle">
+        Our AI-powered engine analyzes entropy, patterns, and brute-force resilience in real-time.
+    </p>
+
+    <!-- <div class="password-box">
+        <input type="password" id="password" placeholder="Enter your password">
+        <button onclick="analyzePassword()">Analyze Strength</button>
+    </div> 
+    <div class="password-box">
+        <div class="password-wrapper">
+            <input type="password" id="password" placeholder="Enter your password">
+            <span id="togglePassword" onclick="togglePassword()">👁</span>
+        </div>
+    <button onclick="analyzePassword()">Analyze Strength</button>
+    </div>
+
+
+    <div class="strength-bar">
+        <div id="strength-fill"></div>
+    </div>
+    <p id="strength-label">—</p>
+
+    <section class="cards">
+
+        <div class="card score">
+            <h3>Overall Security Score</h3>
+            <div class="circle" id="score">0</div>
+            <span id="score-text">—</span>
+        </div>
+
+        <div class="card">
+            <h3>Time to Crack</h3>
+            <p id="time">—</p>
+        </div>
+
+        <div class="card">
+            <h3>Entropy</h3>
+            <p id="entropy">—</p>
+        </div>
+
+        <div class="card">
+            <h3>ML Confidence</h3>
+            <p id="confidence">—</p>
+        </div>
+
+    </section>
+
+    <div class="suggestions">
+        <h3>⚡ Smart Suggestions</h3>
+        <p id="suggestion">—</p>
+    </div>
+
+</main>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecurePass AI</title>
+
+    <!-- Font Awesome (USED FOR OTHER ICONS ONLY) -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+
+<header class="top-bar">
+    <div class="logo">
+        <i class="fa-solid fa-shield-halved"></i> SecurePass AI
+    </div>
+    <div class="status">
+        <span><i class="fa-solid fa-bolt"></i> Real-time Analysis</span>
+        <span><i class="fa-solid fa-lock"></i> Local Processing</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <h1><span>Password Strength Analyzer</span></h1>
+    <p class="subtitle">
+        Our AI-powered engine analyzes Entropy, Patterns, Security in real-time.
+    </p>
+
+    <!-- Password Input -->
+    <div class="password-box">
+        <div class="password-wrapper">
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                autocomplete="off"
+                oninput="handlePasswordInput()"
+            >
+
+            <!-- ✏️ SKETCH EYE TOGGLE -->
+            <button id="toggle-password" type="button" class="eye-toggle">
+
+                <!-- 👁 Eye Open (password hidden) -->
+                <svg id="eye-open" width="26" height="26" viewBox="0 0 24 24"
+                     fill="none" stroke="#6b7280" stroke-width="1.5"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+
+                <!-- 🙈 Eye Closed (password visible) -->
+                <svg id="eye-closed" class="hidden" width="26" height="26"
+                     viewBox="0 0 24 24" fill="none"
+                     stroke="#6b7280" stroke-width="1.5"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s4-6 10-6 10 6 10 6"/>
+                    <path d="M3 3l18 18"/>
+                </svg>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="hint-text" class="hint-text">
+
+        <!-- Sketch Shield Icon -->
+        <svg width="72" height="72" viewBox="0 0 24 24"
+            fill="none"
+            stroke="#d1d5db"
+            stroke-width="1.4"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z"/>
+        </svg>
+
+        <p class="empty-text">
+            Enter a password above to begin analysis
+        </p>
+    </div>
+
+
+
+
+    <!-- Strength Bar -->
+    <div class="strength-bar">
+        <div id="strength-fill"></div>
+    </div>
+    <p id="strength-label">—</p>
+
+    <!-- Cards -->
+    <section class="cards">
+
+        <div class="card score-card">
+            <h3><i class="fa-solid fa-shield"></i> Overall Security Score</h3>
+
+            <div class="progress-circle">
+                <svg width="120" height="120">
+                    <circle class="bg" cx="60" cy="60" r="52"></circle>
+                    <circle class="progress" cx="60" cy="60" r="52"></circle>
+                </svg>
+
+                <div class="score-text">
+                    <span id="score">0</span>%
+                </div>
+            </div>
+
+            <span id="score-text">—</span>
+        </div>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-clock"></i> Attacks</h3>
+            <h>Time to Crack</h>
+            <p id="time">—</p>
+        </div>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-chart-simple"></i> Randomness</h3>
+            <h>Entropy</h>
+            <p id="entropy">—</p>
+        </div>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-brain"></i> Prediction</h3>
+            <h>ML Confidence</h>
+            <p id="confidence">—</p>
+        </div>
+
+    </section>
+
+    <!-- Suggestions -->
+    <div class="suggestions">
+        <h3><i class="fa-solid fa-bolt"></i> Smart Suggestions</h3>
+        <p id="suggestion">—</p>
+    </div>
+
+</main>
+
+</body>
+</html>
