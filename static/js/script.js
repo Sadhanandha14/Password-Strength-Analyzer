@@ -1,5 +1,8 @@
 
 
+
+
+
 let currentController = null;
 let requestSeq = 0;
 
@@ -14,8 +17,6 @@ function handlePasswordInput() {
     const suggestions = document.querySelector(".suggestions");
 
     requestSeq++; 
-
-
     if (!password) {
 
         hintText.style.opacity = "1";
@@ -29,6 +30,7 @@ function handlePasswordInput() {
         return;
     }
 
+
     strengthBar.style.display = "block";
     strengthLabel.style.display = "block";
     cards.style.display = "grid";
@@ -41,7 +43,7 @@ function handlePasswordInput() {
 
 async function analyzePasswordLive(password, seq) {
 
-    
+    // ⛔ Abort previous request
     if (currentController) {
         currentController.abort();
     }
@@ -56,7 +58,7 @@ async function analyzePasswordLive(password, seq) {
             signal: currentController.signal
         });
 
-        
+        // ❌ If newer request exists → STOP
         if (seq !== requestSeq) return;
 
         if (!response.ok) {
@@ -66,11 +68,13 @@ async function analyzePasswordLive(password, seq) {
 
         const data = await response.json();
 
-        
+        // ❌ Input cleared while waiting
         const currentInput = document.getElementById("password").value.trim();
         if (!currentInput) return;
 
-
+     
+     
+  
 const score = data.score;
 
 let strengthText =
@@ -78,14 +82,15 @@ let strengthText =
     score >= 50 ? "GOOD" :
     "WEAK";
 
-
+// Strength bar
 document.getElementById("strength-fill").style.width = score + "%";
 document.getElementById("strength-label").innerText = strengthText;
 
-
+// Score circle
 document.getElementById("score").innerText = score;
 document.getElementById("score-text").innerText = strengthText;
 
+// Circle animation
 const circle = document.querySelector(".progress-circle .progress");
 const radius = 52;
 const circumference = 2 * Math.PI * radius;
@@ -94,6 +99,7 @@ const offset = circumference - (score / 100) * circumference;
 circle.style.strokeDasharray = circumference;
 circle.style.strokeDashoffset = offset;
 circle.style.stroke = "#6366f1";
+
 
         document.getElementById("time").innerText = data.time_to_crack;
         document.getElementById("entropy").innerText =
@@ -155,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initSketchEyeToggle();
 });
 
-
 function initSketchEyeToggle() {
     const passwordInput = document.getElementById("password");
     const toggleBtn = document.getElementById("toggle-password");
@@ -171,3 +176,12 @@ function initSketchEyeToggle() {
         eyeClosed.classList.toggle("hidden", isHidden);
     });
 }
+
+
+
+
+
+
+
+
+
