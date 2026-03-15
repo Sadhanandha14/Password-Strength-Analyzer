@@ -5,8 +5,12 @@ import numpy as np
 
 from src.feature_extraction import FeatureExtractor
 
+
 class PasswordStrengthPredictor:
-  
+    """
+    Handles real-time password strength prediction
+    """
+
     def __init__(self, model_path="models/password_strength_model.pkl"):
         self.model_path = model_path
         self.model = None
@@ -25,6 +29,9 @@ class PasswordStrengthPredictor:
         print("ML model loaded successfully")
 
     def _estimate_time_to_crack(self, entropy_bits: float) -> str:
+        """
+        Rough estimation based on entropy bits
+        """
         if entropy_bits < 5:
             return "Instantly"
         elif entropy_bits < 10:
@@ -48,16 +55,18 @@ class PasswordStrengthPredictor:
         if not password.strip():
             raise ValueError("Password cannot be empty")
 
-        
+        # Feature extraction
         features = self.feature_extractor.extract_from_password(password)
         X = np.array(features).reshape(1, -1)
-      
+
+        # ML prediction
         pred_class = int(self.model.predict(X)[0])
         proba = self.model.predict_proba(X)[0]
         confidence = round(float(np.max(proba)) * 100, 2)
 
         strength_label = self.label_mapping[pred_class]
 
+        # Feature unpacking
         (
             length,
             lower_count,
@@ -71,6 +80,7 @@ class PasswordStrengthPredictor:
             entropy_bits
         ) = features
 
+        # Explanation logic
         explanation = []
 
         if length < 8:
@@ -107,7 +117,7 @@ class PasswordStrengthPredictor:
         else:
             explanation.append("High entropy (very hard to guess)")
 
-
+        # Score (0–100)
         score = min(100, int(entropy_bits))
 
         return {
@@ -120,7 +130,7 @@ class PasswordStrengthPredictor:
         }
 
 
-
+# -------------------- TESTING SECTION --------------------
 if __name__ == "__main__":
     predictor = PasswordStrengthPredictor(
         model_path="models/password_strength_model.pkl"
