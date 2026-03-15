@@ -34,7 +34,7 @@ class DataPreprocessor:
     def normalize_strength_labels(self, target_column="Strength"):
 
         self.df[target_column] = self.df[target_column].str.lower().str.strip()
-        print("Strength labels normalized")
+        print(" Strength labels normalized")
 
     def encode_target_column(self, target_column="Strength"):
 
@@ -47,8 +47,8 @@ class DataPreprocessor:
 
         self.df[target_column] = self.df[target_column].map(self.STRENGTH_MAPPING)
 
-        print("Strength labels encoded safely")
-        print("Encoding used:")
+        print(" Strength labels encoded safely")
+        print(" Encoding used:")
         for k, v in self.STRENGTH_MAPPING.items():
             print(f"   {k} -> {v}")
 
@@ -79,7 +79,7 @@ class DataPreprocessor:
 
     def save_cleaned_data(self, output_path):
         self.df.to_csv(output_path, index=False)
-        print(f"Cleaned dataset saved at: {output_path}")
+        print(f" Cleaned dataset saved at: {output_path}")
 
 
 
@@ -107,5 +107,5 @@ if __name__ == "__main__":
 
     preprocessor.save_cleaned_data(output_path)
 
-    print("\nSample Cleaned Data:")
+    print("\n Sample Cleaned Data:")
     print(cleaned_df.head())
